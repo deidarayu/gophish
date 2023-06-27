@@ -181,8 +181,6 @@ func RequirePermission(perm string) func(http.Handler) http.HandlerFunc {
 func ApplySecurityHeaders(next http.Handler) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		csp := "frame-ancestors 'none';"
-		w.Header().Set("Content-Security-Policy", csp)
-		w.Header().Set("X-Frame-Options", "DENY")
 		next.ServeHTTP(w, r)
 	}
 }
